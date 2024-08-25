@@ -37,5 +37,5 @@ if __name__ == "__main__":
 
     load_dotenv()
     host = getenv("HOST", "0.0.0.0")
-    port = int(getenv("PORT", "8080"))  # Default port is 8080 if not specified
+    port = int(getenv("PORT", "8002"))  # Default port is 8080 if not specified
     uvicorn.run(app, host=host, port=port)
