@@ -9,7 +9,7 @@ from utils.environment.environment_manager import EnvironmentManager, get_enviro
 router = APIRouter(tags=["Chainlink"], prefix="/chainlink")
 
 
-@router.get("/feed/{chain_id}/{risk}", response_model=Dict[str, Dict[str, int]])
+@router.get("/feed/{chain_id}/{risk}", response_model=Dict[str, Dict])
 async def get_data_feed(
         chain_id: int,
         risk: str,

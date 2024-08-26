@@ -5,7 +5,7 @@ from web3 import Web3
 from chainlink.abi import AggregatorV3Interface
 
 
-def get_price(rpc: str, addresses: Dict[str, str]) -> Dict[str, Dict[str, int]]:
+def get_price(rpc: str, addresses: Dict[str, str]) -> Dict[str, Dict]:
     # Change this to use your own RPC URL
     web3 = Web3(Web3.HTTPProvider(rpc))
     # Stores pair as key latest data as value
@@ -16,10 +16,12 @@ def get_price(rpc: str, addresses: Dict[str, str]) -> Dict[str, Dict[str, int]]:
         contract = web3.eth.contract(address=address, abi=AggregatorV3Interface)
         # Make call to latestRoundData()
         try:
+            decimals = contract.functions.decimals().call()
+            print(f"Decimals for {pair}: {decimals}")
             latestData = contract.functions.latestRoundData().call()
             response[pair] = {
                 "roundId": latestData[0],
-                "answer": latestData[1],
+                "answer": latestData[1] / (10 ** decimals),
                 "startedAt": latestData[2],
                 "updatedAt": latestData[3],
                 "answeredInRound": latestData[4]
