@@ -5,3 +5,4 @@ class EnvironmentKeys(Enum):
     ETH_RPC = "ETH_RPC"
     ARBITRUM_RPC = "ARBITRUM_RPC"
     OS = "OS"
+    LIGHTHOUSE_KEY = "LIGHTHOUSE_KEY"

@@ -2,7 +2,7 @@ from fastapi import FastAPI
 
 from dotenv import load_dotenv
 from fastapi.middleware.cors import CORSMiddleware
-from api import chainlink
+from api import chainlink, ipfs
 from utils.logger.logger import logger
 
 app = FastAPI(
@@ -14,6 +14,7 @@ app = FastAPI(
 
 routers = [
     chainlink.router,
+    ipfs.router
 ]
 
 for router in routers:  # routers_test
