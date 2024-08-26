@@ -17,7 +17,6 @@ def get_price(rpc: str, addresses: Dict[str, str]) -> Dict[str, Dict]:
         # Make call to latestRoundData()
         try:
             decimals = contract.functions.decimals().call()
-            print(f"Decimals for {pair}: {decimals}")
             latestData = contract.functions.latestRoundData().call()
             response[pair] = {
                 "roundId": latestData[0],
