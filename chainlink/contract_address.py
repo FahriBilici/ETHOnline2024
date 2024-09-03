@@ -52,7 +52,7 @@ CHAINS = {
         Risk.MEDIUM.value: MEDIUM_RISK_ETH_DATAFEED,
         Risk.HIGH.value: HIGH_RISK_ETH_DATAFEED
     },
-    Chains.ARBITRUM.ARBITRUM: {
+    Chains.ARBITRUM.value: {
         Risk.LOW.value: LOW_RISK_ARBITRUM_DATAFEED,
         Risk.MEDIUM.value: MEDIUM_RISK_ARBITRUM_DATAFEED,
         Risk.HIGH.value: HIGH_RISK_ARBITRUM_DATAFEED
@@ -61,5 +61,7 @@ CHAINS = {
 
 CHAINS_RPC = {
     Chains.ETH.value: EnvironmentKeys.ETH_RPC.value,
-    Chains.ARBITRUM.ARBITRUM: EnvironmentKeys.ARBITRUM_RPC.value
+    Chains.ARBITRUM.value: EnvironmentKeys.ARBITRUM_RPC.value
 }
+
+GALADRIEL_CONTRACT = "0xAfb6A9A9f6F48Fcf1e7E3dB6385b285D51f5eF09"

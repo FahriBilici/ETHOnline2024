@@ -1,6 +1,7 @@
 from typing import Dict, List, Any
 
 from fastapi import APIRouter, Depends
+from starlette.responses import JSONResponse
 
 from chainlink.contract_address import CHAINS_RPC, CHAINS, Chains, Risk
 from chainlink.feed.main import get_price
@@ -18,11 +19,20 @@ async def get_data_feed(
     return get_price(env_manager.get_key(CHAINS_RPC[chain_id]), CHAINS[chain_id][risk])
 
 
-@router.get("/chains", response_model=List[Any])
+@router.get("/chains", response_model=Dict[str, int])
 async def get_chains():
-    return list(Chains)
+    res = {
+        "ETH": Chains.ETH.value,
+        "ARBITRUM": Chains.ARBITRUM.value
+    }
+    return res
 
 
-@router.get("/risks", response_model=List[Any])
+@router.get("/risks", response_model=Dict[str, str])
 async def get_chains():
-    return list(Risk)
+    res = {
+        "LOW": Risk.LOW.value,
+        "MEDIUM": Risk.MEDIUM.value,
+        "HIGH": Risk.HIGH.value
+    }
+    return res

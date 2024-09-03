@@ -2,7 +2,7 @@ from fastapi import FastAPI
 
 from dotenv import load_dotenv
 from fastapi.middleware.cors import CORSMiddleware
-from api import chainlink, ipfs
+from api import chainlink, ipfs, galadriel
 from utils.logger.logger import logger
 
 app = FastAPI(
@@ -14,7 +14,8 @@ app = FastAPI(
 
 routers = [
     chainlink.router,
-    ipfs.router
+    ipfs.router,
+    galadriel.router
 ]
 
 for router in routers:  # routers_test
@@ -38,5 +39,5 @@ if __name__ == "__main__":
 
     load_dotenv()
     host = getenv("HOST", "0.0.0.0")
-    port = int(getenv("PORT", "8002"))  # Default port is 8080 if not specified
+    port = int(getenv("PORT", "8003"))  # Default port is 8080 if not specified
     uvicorn.run(app, host=host, port=port)
