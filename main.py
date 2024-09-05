@@ -2,7 +2,7 @@ from fastapi import FastAPI
 
 from dotenv import load_dotenv
 from fastapi.middleware.cors import CORSMiddleware
-from api import chainlink, ipfs, galadriel
+from api import chainlink, ipfs, galadriel, price
 from utils.logger.logger import logger
 
 app = FastAPI(
@@ -15,7 +15,8 @@ app = FastAPI(
 routers = [
     chainlink.router,
     ipfs.router,
-    galadriel.router
+    galadriel.router,
+    price.router
 ]
 
 for router in routers:  # routers_test

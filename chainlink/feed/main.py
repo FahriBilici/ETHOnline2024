@@ -1,11 +1,12 @@
 from typing import Dict, List
 
+from starlette.responses import JSONResponse
 from web3 import Web3
 
 from chainlink.abi import AggregatorV3Interface
 
 
-def get_price(rpc: str, addresses: Dict[str, str]) -> Dict[str, Dict]:
+def get_price(rpc: str, addresses: Dict[str, str]) -> JSONResponse:
     # Change this to use your own RPC URL
     web3 = Web3(Web3.HTTPProvider(rpc))
     # Stores pair as key latest data as value
@@ -27,4 +28,4 @@ def get_price(rpc: str, addresses: Dict[str, str]) -> Dict[str, Dict]:
             }
         except Exception as e:
             print(f"Error fetching data for {pair}: {e}")
-    return response
+    return JSONResponse(content=response)

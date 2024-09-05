@@ -1,5 +1,4 @@
 from tempfile import NamedTemporaryFile
-from typing import Any, Dict
 
 from fastapi import APIRouter, Depends
 from lighthouseweb3 import Lighthouse
