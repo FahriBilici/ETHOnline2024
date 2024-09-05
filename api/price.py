@@ -13,11 +13,15 @@ def get_historical_price(
         symbol: str
 ):
     current_timestamp = int(time.time() * 1000)
+    milliseconds_in_a_day = 24 * 60 * 60 * 1000
+    timestamp_10_days_before = current_timestamp - (10 * milliseconds_in_a_day)
     url = "https://api.redstone.finance/prices"
     params = {
         "symbol": symbol,
         "provider": "redstone",
         "toTimestamp": current_timestamp,
+        "fromTimestamp": timestamp_10_days_before,
+        "interval": 86400000,
         "limit": 10
     }
 
