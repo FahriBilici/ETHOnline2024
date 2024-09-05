@@ -8,12 +8,14 @@ from starlette.responses import JSONResponse
 router = APIRouter(tags=["Price"], prefix="/price")
 
 
-@router.get("", response_model=Dict[Any, Any])
-def get_historical_price():
+@router.get("/{symbol}", response_model=Dict[Any, Any])
+def get_historical_price(
+        symbol: str
+):
     current_timestamp = int(time.time() * 1000)
     url = "https://api.redstone.finance/prices"
     params = {
-        "symbol": "AR",
+        "symbol": symbol,
         "provider": "redstone",
         "toTimestamp": current_timestamp,
         "limit": 10
@@ -24,8 +26,9 @@ def get_historical_price():
 
     if response.status_code == 200:
         data = response.json()  # Parse the response as JSON
-        print(data)
-        return JSONResponse(content={"Res": data})
+        res = [{"symbol": index["symbol"], "value": index["value"], "timestamp": index["timestamp"]} for index in data]
+        print(res)
+        return JSONResponse(content={"Res": res})
     else:
         print(f"Request failed with status code {response.status_code}")
         return JSONResponse(content={"Res": "Error"})
