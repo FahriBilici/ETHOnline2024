@@ -21,7 +21,7 @@ def get_historical_price(
         "provider": "redstone",
         "toTimestamp": current_timestamp,
         "fromTimestamp": timestamp_10_days_before,
-        "interval": 86400000,
+        "interval": milliseconds_in_a_day,
         "limit": 10
     }
 
