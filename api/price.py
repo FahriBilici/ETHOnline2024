@@ -1,4 +1,5 @@
 import time
+from datetime import datetime, timedelta
 from typing import Dict, Any
 
 import requests
@@ -19,10 +20,10 @@ def get_historical_price(
     params = {
         "symbol": symbol,
         "provider": "redstone",
-        "toTimestamp": current_timestamp,
+        "toTimestamp":  current_timestamp,
         "fromTimestamp": timestamp_10_days_before,
         "interval": milliseconds_in_a_day,
-        "limit": 10
+        "limit": 50
     }
 
     # Send the GET request
