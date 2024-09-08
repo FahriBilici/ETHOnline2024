@@ -29,9 +29,11 @@ def ask_ai(rpc: str, address: str, message: str, private_key: str) -> str:
         signed_txn = web3.eth.account.sign_transaction(transaction, private_key=private_key)
         # Send the transaction
         txn_hash = web3.eth.send_raw_transaction(signed_txn.raw_transaction)
+        res = txn_hash
         print(f"Transaction successful with hash: {txn_hash.hex()}")
     except Exception as e:
         print(f"Error while asking ai")
+        res = e.__str__()
     return response
 
 
